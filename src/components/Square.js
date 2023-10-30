@@ -13,7 +13,9 @@ const Square = ({value, index , handleSquareClick}) => {
       <div className="square" onClick = {handleClick}> 
       {value}
       </div>
+      
     </>
+    
   )
 }
 export default Square
