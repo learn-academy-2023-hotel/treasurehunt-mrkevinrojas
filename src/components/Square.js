@@ -1,9 +1,12 @@
 import React from "react"
 
-const Square = () => {
+const Square = (props) => {
+  //destructuring props
+  //const { value } = props // same as props.value
+
   return (
     <>
-      <div className="square"></div>
+      <div className="square">{props.value}</div>
     </>
   )
 }
