@@ -16,7 +16,13 @@ const App = () => {
   ])
 
   const handleSquareClick = (clickedSquareIndex) => {
-    alert(clickedSquareIndex)
+   // alert(clickedSquareIndex)
+   let updatedcurrentBoard = [...board]
+   // use index to update the current square's values with emoji
+   updatedcurrentBoard[clickedSquareIndex] = "🎄"
+   // update state with the new board
+   setBoard(updatedcurrentBoard)
+
   }
 
   return (
@@ -25,7 +31,9 @@ const App = () => {
       <div className = "board" > 
       {/* Map over array and return a square for each element */}
       { board.map((value, index) => {
-        return <Square value={value} index={index}
+        return <Square 
+        value={value} 
+        index={index}
         handleSquareClick={handleSquareClick}/>
 
       })}
