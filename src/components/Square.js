@@ -1,21 +1,26 @@
 import React from "react"
 
-const Square = ({value, index , handleSquareClick}) => {
+const Square = ({value, index , handleSquareClick, currentCount}) => {
   //destructuring props
   //const { value } = props // same as props.value
   // instead pass the destructured prop in the parentheses
 
+
+  
+
   const handleClick = () => {
     handleSquareClick(index)
+
   }
   return (
     <>
-      <div className="square" onClick = {handleClick}> 
+      <div className="square" 
+      onClick = {handleClick}> 
       {value}
       </div>
       
     </>
     
   )
-}
+  }
 export default Square

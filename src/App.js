@@ -22,7 +22,7 @@ const App = () => {
   const [bombLocation, setBombLocation] = useState(
     Math.floor(Math.random() * board.length)
   );
-   
+
   const resetGame = () => {
     setBoard( ["?",
     "?",
@@ -33,9 +33,11 @@ const App = () => {
     "?",
     "?",
     "?",
-  ], setBombLocation(Math.floor(Math.random() * board.length)),setTreasureLocation(Math.floor(Math.random() * board.length)))
+  ], setBombLocation(Math.floor(Math.random() * board.length)),setTreasureLocation(Math.floor(Math.random() * board.length)), setCount(5))
+
   }
 
+  const[count, setCount] = useState(5)
 
   const handleSquareClick = (clickedSquareIndex) => {
     // alert(clickedSquareIndex)
@@ -45,21 +47,58 @@ const App = () => {
 
     if (clickedSquareIndex === treasureLocation) {
       // then reassign state value at that index to treasure emoji
-      updatedBoard[clickedSquareIndex] = "💎";
-
+      updatedBoard[clickedSquareIndex] = "💎"
+      alert("winner winner chicken dinner")
+      (setCount(5), setBoard(["?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+    ]), setBombLocation(Math.floor(Math.random() * board.length)), setTreasureLocation(Math.floor(Math.random() * board.length)))
+    
     } else if (clickedSquareIndex === bombLocation) {
-      updatedBoard[clickedSquareIndex] = "💣";
+      updatedBoard[clickedSquareIndex] = "💣"
+      alert("you're not worth a dime")
+      
+      (setCount(5), setBoard(["?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+    ]), setBombLocation(Math.floor(Math.random() * board.length)), setTreasureLocation(Math.floor(Math.random() * board.length)))
+    
 
     } else {
       // use index to update the current square's values with emoji
       updatedBoard[clickedSquareIndex] = "🎄";
+      setCount(count-1)
+      
+      if (count === 0){
+        alert("out of turns")
+        (setCount(5), setBoard(["?",
+        "?",
+        "?",
+        "?",
+        "?",
+        "?",
+        "?",
+        "?",
+        "?",
+      ]), setBombLocation(Math.floor(Math.random() * board.length)), setTreasureLocation(Math.floor(Math.random() * board.length)))   
+      }
+
       // update state with the new board
     }
-
     setBoard(updatedBoard);
-
-
-  };
+  }
 
   return (
     <>
@@ -71,14 +110,15 @@ const App = () => {
             <Square
               value={value}
               index={index}
-              handleSquareClick={handleSquareClick}
+              handleSquareClick={handleSquareClick}           
             />
           )
         })}
       </div>
+      <div > Turns left: {count}  </div>
       <button onClick={resetGame}>Click to Play again</button>
     </>
   );
 };
 
-export default App;
+export default App
